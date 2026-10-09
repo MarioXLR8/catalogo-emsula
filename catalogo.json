@@ -1,0 +1,938 @@
+{
+  "catalog": [
+    {
+      "id": "b_mv1136e4_1",
+      "brand": "Pepsi",
+      "tagline": "El sabor que refresca tus días.",
+      "c1": "#0b3d91",
+      "c2": "#e32934",
+      "letter": "P",
+      "products": [
+        {
+          "id": "p_mv1136e4_2",
+          "img": "img/PEPSI/pepsiblack-lata-12oz.png",
+          "name": "Pepsi Zero Sugar",
+          "type": "lata",
+          "volume": "355 ml",
+          "detail": "Versión sin azúcar de Pepsi, con todo el sabor y cero calorías. Lata negra edición Max Taste."
+        },
+        {
+          "id": "p_mv1136e4_3",
+          "img": "img/PEPSI/pepsi-lata-12oz.png",
+          "name": "Pepsi Cola",
+          "type": "lata",
+          "volume": "355 ml",
+          "detail": "Refresco de cola carbonatado en lata estándar. Disponible en paquete de 24 unidades."
+        },
+        {
+          "id": "p_mv1136e4_4",
+          "img": "img/PEPSI/pepsi-plastico-500ml.png",
+          "name": "Pepsi Cola",
+          "type": "pet",
+          "volume": "500 ml",
+          "detail": "Formato personal en botella PET. Práctica para llevar a cualquier parte."
+        },
+        {
+          "id": "p_mv1136e4_5",
+          "img": "img/PEPSI/pepsi-plastico-6.5oz.png",
+          "name": "Pepsi Cola",
+          "type": "pet",
+          "volume": "6.5 oz",
+          "detail": "Formato pequeño en PET, ideal para loncheras."
+        },
+        {
+          "id": "p_mv1136e4_6",
+          "img": "img/PEPSI/pepsi-vidrio-6.5oz.png",
+          "name": "Pepsi Cola",
+          "type": "vidrio",
+          "volume": "6.5 oz",
+          "detail": "Botella de vidrio retornable pequeña."
+        },
+        {
+          "id": "p_mv1136e4_7",
+          "img": "img/PEPSI/pepsi-vidrio-12oz.png",
+          "name": "Pepsi Cola",
+          "type": "vidrio",
+          "volume": "355 ml",
+          "detail": "Botella de vidrio retornable, tamaño estándar."
+        },
+        {
+          "id": "p_mv1136e4_8",
+          "img": "img/PEPSI/pepsi-vidrio-500ml.png",
+          "name": "Pepsi Cola",
+          "type": "vidrio",
+          "volume": "500 ml",
+          "detail": "Botella de vidrio retornable mediana."
+        },
+        {
+          "id": "p_mv1136e4_9",
+          "img": "img/PEPSI/pepsi-vidrio-1.25L.png",
+          "name": "Pepsi Cola",
+          "type": "vidrio",
+          "volume": "1.25 L",
+          "detail": "Botella de vidrio retornable familiar."
+        },
+        {
+          "id": "p_mv1136e4_10",
+          "img": "img/PEPSI/pepsilight-plastico-500ml.png",
+          "name": "Pepsi Light",
+          "type": "pet",
+          "volume": "500 ml",
+          "detail": "Versión ligera de Pepsi en botella personal."
+        },
+        {
+          "id": "p_mv1136e4_11",
+          "img": "img/PEPSI/pepsilight-plastico-1L.png",
+          "name": "Pepsi Light",
+          "type": "pet",
+          "volume": "1 L",
+          "detail": "Versión ligera de Pepsi en botella de 1 litro."
+        },
+        {
+          "id": "p_mv1136e4_12",
+          "img": "img/PEPSI/pepsilight-plastico-1.25L.png",
+          "name": "Pepsi Light",
+          "type": "pet",
+          "volume": "1.25 L",
+          "detail": "Versión ligera de Pepsi en botella mediana."
+        },
+        {
+          "id": "p_mv1136e4_13",
+          "img": "img/PEPSI/pepsilight-plastico-1.5L.png",
+          "name": "Pepsi Light",
+          "type": "pet",
+          "volume": "1.5 L",
+          "detail": "Versión ligera de Pepsi en botella grande."
+        },
+        {
+          "id": "p_mv1136e4_14",
+          "img": "img/PEPSI/pepsilight-plastico-2L.png",
+          "name": "Pepsi Light",
+          "type": "pet",
+          "volume": "2 L",
+          "detail": "Versión ligera de Pepsi en botella para compartir."
+        },
+        {
+          "id": "p_mv1136e4_15",
+          "img": "img/PEPSI/pepsilight-plastico-3L.png",
+          "name": "Pepsi Light",
+          "type": "pet",
+          "volume": "3 L",
+          "detail": "Versión ligera de Pepsi en formato familiar."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_16",
+      "brand": "7 Up",
+      "tagline": "Refrescante sabor lima-limón.",
+      "c1": "#00843d",
+      "c2": "#7ac143",
+      "letter": "7",
+      "products": [
+        {
+          "id": "p_mv1136e4_17",
+          "img": "img/7Up/7Up-lata-12oz.png",
+          "name": "7 Up",
+          "type": "lata",
+          "volume": "355 ml",
+          "detail": "Refresco carbonatado de lima-limón en lata."
+        },
+        {
+          "id": "p_mv1136e4_18",
+          "img": "img/7Up/7up-vidrio-12oz.png",
+          "name": "7 Up",
+          "type": "vidrio",
+          "volume": "355 ml",
+          "detail": "Botella de vidrio retornable estándar."
+        },
+        {
+          "id": "p_mv1136e4_19",
+          "img": "img/7Up/7up-vidrio-500ml.png",
+          "name": "7 Up",
+          "type": "vidrio",
+          "volume": "500 ml",
+          "detail": "Botella de vidrio retornable mediana."
+        },
+        {
+          "id": "p_mv1136e4_20",
+          "img": "img/7Up/7up-vidrio-1.png",
+          "name": "7 Up",
+          "type": "vidrio",
+          "volume": "1 L",
+          "detail": "Botella de vidrio retornable de 1 litro."
+        },
+        {
+          "id": "p_mv1136e4_21",
+          "img": "img/7Up/7up-vidrio-1.25L.png",
+          "name": "7 Up",
+          "type": "vidrio",
+          "volume": "1.25 L",
+          "detail": "Botella de vidrio retornable familiar."
+        },
+        {
+          "id": "p_mv1136e4_22",
+          "img": "img/7Up/7up-PET-500ml.png",
+          "name": "7 Up",
+          "type": "pet",
+          "volume": "500 ml",
+          "detail": "Botella personal en PET."
+        },
+        {
+          "id": "p_mv1136e4_23",
+          "img": "img/7Up/7Up-PET-1.5L.png",
+          "name": "7 Up",
+          "type": "pet",
+          "volume": "1.5 L",
+          "detail": "Botella grande en PET."
+        },
+        {
+          "id": "p_mv1136e4_24",
+          "img": "img/7Up/7Up-PET-2L.png",
+          "name": "7 Up",
+          "type": "pet",
+          "volume": "2 L",
+          "detail": "Botella para compartir en PET."
+        },
+        {
+          "id": "p_mv1136e4_25",
+          "img": "img/7Up/7Up-PET-3L.png",
+          "name": "7 Up",
+          "type": "pet",
+          "volume": "3 L",
+          "detail": "Botella familiar en PET."
+        },
+        {
+          "id": "p_mv1136e4_26",
+          "img": "img/7Up/Teem-vidrio-12oz.png",
+          "name": "Teem",
+          "type": "vidrio",
+          "volume": "355 ml",
+          "detail": "Refresco Teem en botella de vidrio retornable."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_27",
+      "brand": "Mirinda",
+      "tagline": "Sabor frutal que enamora.",
+      "c1": "#ff7a00",
+      "c2": "#ffb300",
+      "letter": "M",
+      "products": [
+        {
+          "id": "p_mv1136e4_28",
+          "img": "",
+          "name": "Mirinda Naranja",
+          "type": "lata",
+          "volume": "355 ml",
+          "detail": "Refresco carbonatado sabor naranja."
+        },
+        {
+          "id": "p_mv1136e4_29",
+          "img": "",
+          "name": "Mirinda Naranja",
+          "type": "pet",
+          "volume": "600 ml",
+          "detail": "Botella personal en PET."
+        },
+        {
+          "id": "p_mv1136e4_30",
+          "img": "",
+          "name": "Mirinda Naranja",
+          "type": "pet",
+          "volume": "2 L",
+          "detail": "Botella para compartir en PET."
+        },
+        {
+          "id": "p_mv1136e4_31",
+          "img": "",
+          "name": "Mirinda Naranja",
+          "type": "pet",
+          "volume": "3 L",
+          "detail": "Botella familiar en PET."
+        },
+        {
+          "id": "p_mv1136e4_32",
+          "img": "",
+          "name": "Mirinda Uva",
+          "type": "pet",
+          "volume": "500 ml",
+          "detail": "Variante sabor uva en botella personal."
+        },
+        {
+          "id": "p_mv1136e4_33",
+          "img": "",
+          "name": "Mirinda Banana",
+          "type": "lata",
+          "volume": "355 ml",
+          "detail": "Variante sabor banana en formato lata."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_34",
+      "brand": "Link",
+      "tagline": "Sabores frutales en cada sorbo.",
+      "c1": "#e63946",
+      "c2": "#ff8fa3",
+      "letter": "L",
+      "products": [
+        {
+          "id": "p_mv1136e4_35",
+          "img": "",
+          "name": "Link Sabores",
+          "type": "pet",
+          "volume": "7 oz",
+          "detail": "Refresco frutal. Sabores: banana, toronja, coco y mandarina."
+        },
+        {
+          "id": "p_mv1136e4_36",
+          "img": "",
+          "name": "Link Sabores",
+          "type": "pet",
+          "volume": "12 oz",
+          "detail": "Botella pequeña en PET."
+        },
+        {
+          "id": "p_mv1136e4_37",
+          "img": "",
+          "name": "Link Sabores",
+          "type": "pet",
+          "volume": "500 ml",
+          "detail": "Botella personal en PET."
+        },
+        {
+          "id": "p_mv1136e4_38",
+          "img": "",
+          "name": "Link Sabores",
+          "type": "pet",
+          "volume": "1.1 L",
+          "detail": "Botella mediana en PET."
+        },
+        {
+          "id": "p_mv1136e4_39",
+          "img": "",
+          "name": "Link Sabores",
+          "type": "pet",
+          "volume": "3 L",
+          "detail": "Botella familiar en PET."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_40",
+      "brand": "Mountain Dew",
+      "tagline": "Energía cítrica al máximo.",
+      "c1": "#7dc242",
+      "c2": "#f5e400",
+      "letter": "D",
+      "products": [
+        {
+          "id": "p_mv1136e4_41",
+          "img": "",
+          "name": "Mountain Dew",
+          "type": "lata",
+          "volume": "355 ml",
+          "detail": "Refresco cítrico con alto contenido de cafeína."
+        },
+        {
+          "id": "p_mv1136e4_42",
+          "img": "",
+          "name": "Mountain Dew",
+          "type": "lata",
+          "volume": "500 ml",
+          "detail": "Formato XP Edition."
+        },
+        {
+          "id": "p_mv1136e4_43",
+          "img": "",
+          "name": "Mountain Dew Jamaica Cherry Blossom",
+          "type": "pet",
+          "volume": "500 ml",
+          "detail": "Fusión de flor de Jamaica con toque de cerezo."
+        },
+        {
+          "id": "p_mv1136e4_44",
+          "img": "",
+          "name": "Mountain Dew Jamaica Cherry Blossom",
+          "type": "pet",
+          "volume": "1.1 L",
+          "detail": "Mismo sabor innovador en formato mediano."
+        },
+        {
+          "id": "p_mv1136e4_45",
+          "img": "",
+          "name": "Mountain Dew Pink Drip",
+          "type": "lata",
+          "volume": "355 ml",
+          "detail": "Sabor nuevo y refrescante en lata."
+        },
+        {
+          "id": "p_mv1136e4_46",
+          "img": "",
+          "name": "Mountain Dew Pink Drip",
+          "type": "pet",
+          "volume": "500 ml",
+          "detail": "Sabor nuevo en botella personal."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_47",
+      "brand": "Aguazul",
+      "tagline": "Agua purificada de confianza.",
+      "c1": "#00a0e3",
+      "c2": "#7fdbff",
+      "letter": "A",
+      "products": [
+        {
+          "id": "p_mv1136e4_48",
+          "img": "",
+          "name": "Aguazul",
+          "type": "botellon",
+          "volume": "5 Galones",
+          "detail": "Botellón para hogar y oficina."
+        },
+        {
+          "id": "p_mv1136e4_49",
+          "img": "",
+          "name": "Aguazul",
+          "type": "lata",
+          "volume": "12 oz",
+          "detail": "Agua purificada en lata."
+        },
+        {
+          "id": "p_mv1136e4_50",
+          "img": "",
+          "name": "Aguazul",
+          "type": "pet",
+          "volume": "500 ml",
+          "detail": "Botella personal pequeña."
+        },
+        {
+          "id": "p_mv1136e4_51",
+          "img": "",
+          "name": "Aguazul",
+          "type": "pet",
+          "volume": "750 ml",
+          "detail": "Botella personal mediana."
+        },
+        {
+          "id": "p_mv1136e4_52",
+          "img": "",
+          "name": "Aguazul",
+          "type": "pet",
+          "volume": "1.1 L",
+          "detail": "Botella mediana."
+        },
+        {
+          "id": "p_mv1136e4_53",
+          "img": "",
+          "name": "Aguazul",
+          "type": "pet",
+          "volume": "1.5 L",
+          "detail": "Botella grande."
+        },
+        {
+          "id": "p_mv1136e4_54",
+          "img": "",
+          "name": "Aguazul",
+          "type": "prepack",
+          "volume": "473 ml",
+          "detail": "Presentación en bolsa sellada."
+        },
+        {
+          "id": "p_mv1136e4_55",
+          "img": "",
+          "name": "Aguazul Life",
+          "type": "pet",
+          "volume": "—",
+          "detail": "Línea con beneficios adicionales."
+        },
+        {
+          "id": "p_mv1136e4_56",
+          "img": "",
+          "name": "Aguazul Sport",
+          "type": "pet",
+          "volume": "—",
+          "detail": "Línea diseñada para deportistas."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_57",
+      "brand": "Gatorade",
+      "tagline": "Rehidrata, repone, rinde.",
+      "c1": "#f58220",
+      "c2": "#ffb347",
+      "letter": "G",
+      "products": [
+        {
+          "id": "p_mv1136e4_58",
+          "img": "",
+          "name": "Gatorade",
+          "type": "botella",
+          "volume": "600 ml",
+          "detail": "Bebida deportiva. Sabores: Uva, Ponche de Frutas, Berry."
+        },
+        {
+          "id": "p_mv1136e4_59",
+          "img": "",
+          "name": "Gatorade",
+          "type": "botella",
+          "volume": "1 L",
+          "detail": "Formato de 1 litro."
+        },
+        {
+          "id": "p_mv1136e4_60",
+          "img": "",
+          "name": "Gatorade",
+          "type": "botella",
+          "volume": "1.25 L",
+          "detail": "Botella grande."
+        },
+        {
+          "id": "p_mv1136e4_61",
+          "img": "",
+          "name": "Gatorade",
+          "type": "botella",
+          "volume": "2 L",
+          "detail": "Formato para compartir en equipo."
+        },
+        {
+          "id": "p_mv1136e4_62",
+          "img": "",
+          "name": "Gatorade",
+          "type": "botella",
+          "volume": "3 L",
+          "detail": "Formato familiar."
+        },
+        {
+          "id": "p_mv1136e4_63",
+          "img": "",
+          "name": "Gatorade Zero",
+          "type": "botella",
+          "volume": "—",
+          "detail": "Versión sin azúcar. Sabores: Glacier Freeze y Fresa Kiwi."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_64",
+      "brand": "Gatorlit",
+      "tagline": "Hidratación más rápida y efectiva.",
+      "c1": "#00b5ad",
+      "c2": "#7fffe8",
+      "letter": "G",
+      "products": [
+        {
+          "id": "p_mv1136e4_65",
+          "img": "img/GATORLIT/Gatorlit-Naranja-PET-20z.png",
+          "name": "Gatorlit Naranja",
+          "type": "botella",
+          "volume": "20 oz",
+          "detail": "Nueva apuesta de Gatorade. Sabor naranja."
+        },
+        {
+          "id": "p_mv1136e4_66",
+          "img": "img/GATORLIT/Gatorlit-Coco-PET-20z.png",
+          "name": "Gatorlit Coco",
+          "type": "botella",
+          "volume": "20 oz",
+          "detail": "Nueva apuesta de Gatorade. Sabor coco."
+        },
+        {
+          "id": "p_mv1136e4_67",
+          "img": "img/GATORLIT/Gatorlit-Uva-PET-20z.png",
+          "name": "Gatorlit Uva",
+          "type": "botella",
+          "volume": "20 oz",
+          "detail": "Nueva apuesta de Gatorade. Sabor uva."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_68",
+      "brand": "Lipton Ice Tea",
+      "tagline": "Té frío listo para beber.",
+      "c1": "#f2c200",
+      "c2": "#fff08a",
+      "letter": "L",
+      "products": [
+        {
+          "id": "p_mv1136e4_69",
+          "img": "",
+          "name": "Lipton Limón",
+          "type": "botella",
+          "volume": "500 ml",
+          "detail": "Té frío sabor limón en botella personal."
+        },
+        {
+          "id": "p_mv1136e4_70",
+          "img": "",
+          "name": "Lipton Durazno",
+          "type": "botella",
+          "volume": "500 ml",
+          "detail": "Té frío sabor durazno en botella personal."
+        },
+        {
+          "id": "p_mv1136e4_71",
+          "img": "",
+          "name": "Lipton Frambuesa",
+          "type": "botella",
+          "volume": "500 ml",
+          "detail": "Té frío sabor frambuesa en botella personal."
+        },
+        {
+          "id": "p_mv1136e4_72",
+          "img": "",
+          "name": "Lipton Té Verde",
+          "type": "botella",
+          "volume": "500 ml",
+          "detail": "Té verde frío en botella personal."
+        },
+        {
+          "id": "p_mv1136e4_73",
+          "img": "",
+          "name": "Lipton Mango Maracuyá",
+          "type": "botella",
+          "volume": "500 ml",
+          "detail": "Té frío sabor mango maracuyá."
+        },
+        {
+          "id": "p_mv1136e4_74",
+          "img": "",
+          "name": "Lipton Limón",
+          "type": "botella",
+          "volume": "2 L",
+          "detail": "Formato para compartir. Sabor limón."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_75",
+      "brand": "Jugos del Valle",
+      "tagline": "Jugo natural en cada envase.",
+      "c1": "#f4a300",
+      "c2": "#ffd77a",
+      "letter": "V",
+      "products": [
+        {
+          "id": "p_mv1136e4_76",
+          "img": "",
+          "name": "Jugos del Valle Naranja",
+          "type": "botella",
+          "volume": "260 ml",
+          "detail": "Jugo de naranja en presentación personal."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_77",
+      "brand": "Enjoy",
+      "tagline": "Refresca tu día con frutas.",
+      "c1": "#e6007e",
+      "c2": "#ff8fd0",
+      "letter": "E",
+      "products": [
+        {
+          "id": "p_mv1136e4_78",
+          "img": "",
+          "name": "Enjoy",
+          "type": "lata",
+          "volume": "330 ml",
+          "detail": "Bebida refrescante. Sabores: Naranja, Pera, Melocotón, Piña."
+        },
+        {
+          "id": "p_mv1136e4_79",
+          "img": "",
+          "name": "Enjoy",
+          "type": "botella",
+          "volume": "266 ml",
+          "detail": "Botella pequeña."
+        },
+        {
+          "id": "p_mv1136e4_80",
+          "img": "",
+          "name": "Enjoy",
+          "type": "botella",
+          "volume": "500 ml",
+          "detail": "Botella personal."
+        },
+        {
+          "id": "p_mv1136e4_81",
+          "img": "",
+          "name": "Enjoy",
+          "type": "botella",
+          "volume": "2 L",
+          "detail": "Botella para compartir."
+        },
+        {
+          "id": "p_mv1136e4_82",
+          "img": "",
+          "name": "Enjoy Néctar",
+          "type": "botella",
+          "volume": "—",
+          "detail": "Néctar de frutas."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_83",
+      "brand": "Quanty",
+      "tagline": "Jugo práctico para cualquier momento.",
+      "c1": "#8b5cf6",
+      "c2": "#c4b5fd",
+      "letter": "Q",
+      "products": [
+        {
+          "id": "p_mv1136e4_84",
+          "img": "",
+          "name": "Quanty",
+          "type": "botella",
+          "volume": "8 oz",
+          "detail": "Jugo de frutas. Sabores: Naranja, Uva, Fruit Punch."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_85",
+      "brand": "Adrenaline Rush",
+      "tagline": "Energía sin límites.",
+      "c1": "#e4002b",
+      "c2": "#ff7a8a",
+      "letter": "A",
+      "products": [
+        {
+          "id": "p_mv1136e4_86",
+          "img": "",
+          "name": "Adrenaline Rush",
+          "type": "lata",
+          "volume": "10 oz",
+          "detail": "Bebida energética. Sabores: Maracuyá, Mango Salvaje."
+        },
+        {
+          "id": "p_mv1136e4_87",
+          "img": "",
+          "name": "Adrenaline Rush",
+          "type": "lata",
+          "volume": "16 oz",
+          "detail": "Formato grande."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_88",
+      "brand": "AMP",
+      "tagline": "Impulso para tu día.",
+      "c1": "#00a551",
+      "c2": "#7fffb0",
+      "letter": "A",
+      "products": [
+        {
+          "id": "p_mv1136e4_89",
+          "img": "img/AMP/Amp-PET-500ml.png",
+          "name": "AMP",
+          "type": "pet",
+          "volume": "500 ml",
+          "detail": "Bebida energética en botella personal."
+        },
+        {
+          "id": "p_mv1136e4_90",
+          "img": "img/AMP/Amp-PET-12oz.png",
+          "name": "AMP",
+          "type": "pet",
+          "volume": "12 oz",
+          "detail": "Bebida energética en formato pequeño."
+        },
+        {
+          "id": "p_mv1136e4_91",
+          "img": "img/AMP/Amp-PET-1.1L.png",
+          "name": "AMP",
+          "type": "pet",
+          "volume": "1.1 L",
+          "detail": "Bebida energética en botella mediana."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_92",
+      "brand": "Rockstar",
+      "tagline": "Rendimiento al siguiente nivel.",
+      "c1": "#f5c400",
+      "c2": "#fff29a",
+      "letter": "R",
+      "products": [
+        {
+          "id": "p_mv1136e4_93",
+          "img": "img/ROCKSTAR/rockstar-energy-lata.png",
+          "name": "Rockstar Energy",
+          "type": "lata",
+          "volume": "—",
+          "detail": "Bebida energética en lata."
+        },
+        {
+          "id": "p_mv1136e4_94",
+          "img": "img/ROCKSTAR/rockstar-energy-plastico-500ml.png",
+          "name": "Rockstar Energy",
+          "type": "pet",
+          "volume": "500 ml",
+          "detail": "Bebida energética en botella PET."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_95",
+      "brand": "Zen",
+      "tagline": "Refresco con equilibrio.",
+      "c1": "#00c2a8",
+      "c2": "#8fffe8",
+      "letter": "Z",
+      "products": [
+        {
+          "id": "p_mv1136e4_96",
+          "img": "",
+          "name": "Zen",
+          "type": "botella",
+          "volume": "—",
+          "detail": "Bebida refrescante de la marca Zen."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_97",
+      "brand": "Montana",
+      "tagline": "El sabor de la fruta.",
+      "c1": "#c8102e",
+      "c2": "#ff8093",
+      "letter": "M",
+      "products": [
+        {
+          "id": "p_mv1136e4_98",
+          "img": "",
+          "name": "Montana",
+          "type": "lata",
+          "volume": "330 ml",
+          "detail": "Bebida refrescante con 10%–15% de fruta."
+        },
+        {
+          "id": "p_mv1136e4_99",
+          "img": "",
+          "name": "Montana",
+          "type": "botella",
+          "volume": "266 ml",
+          "detail": "Botella pequeña."
+        },
+        {
+          "id": "p_mv1136e4_100",
+          "img": "",
+          "name": "Montana",
+          "type": "botella",
+          "volume": "500 ml",
+          "detail": "Botella personal."
+        },
+        {
+          "id": "p_mv1136e4_101",
+          "img": "",
+          "name": "Montana",
+          "type": "botella",
+          "volume": "2 L",
+          "detail": "Botella para compartir."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_102",
+      "brand": "H2OH",
+      "tagline": "Hidratación con sabor.",
+      "c1": "#00b0f0",
+      "c2": "#a0e8ff",
+      "letter": "H",
+      "products": [
+        {
+          "id": "p_mv1136e4_103",
+          "img": "",
+          "name": "H2OH",
+          "type": "lata",
+          "volume": "12 oz",
+          "detail": "Bebida hidratante en lata."
+        },
+        {
+          "id": "p_mv1136e4_104",
+          "img": "",
+          "name": "H2OH",
+          "type": "botella",
+          "volume": "500 ml",
+          "detail": "Bebida hidratante en botella personal."
+        },
+        {
+          "id": "p_mv1136e4_105",
+          "img": "",
+          "name": "H2OH",
+          "type": "botella",
+          "volume": "1.1 L",
+          "detail": "Bebida hidratante en botella mediana."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_106",
+      "brand": "Sting",
+      "tagline": "Energía que despierta.",
+      "c1": "#e31e24",
+      "c2": "#ff8a8f",
+      "letter": "S",
+      "products": [
+        {
+          "id": "p_mv1136e4_107",
+          "img": "img/STING/sting-energy.png",
+          "name": "Sting Energy",
+          "type": "lata",
+          "volume": "—",
+          "detail": "Bebida energética de la marca Sting."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_108",
+      "brand": "Cool Malta",
+      "tagline": "Alternativa sin alcohol.",
+      "c1": "#8b5a2b",
+      "c2": "#d9a86c",
+      "letter": "C",
+      "products": [
+        {
+          "id": "p_mv1136e4_109",
+          "img": "",
+          "name": "Cool Malta",
+          "type": "botella",
+          "volume": "—",
+          "detail": "Bebida de malta, alternativa sin alcohol."
+        }
+      ]
+    },
+    {
+      "id": "b_mv1136e4_110",
+      "brand": "TEM",
+      "tagline": "Té frío con carácter.",
+      "c1": "#6b8e23",
+      "c2": "#c3e06a",
+      "letter": "T",
+      "products": [
+        {
+          "id": "p_mv1136e4_111",
+          "img": "",
+          "name": "TEM",
+          "type": "botella",
+          "volume": "—",
+          "detail": "Té frío de la marca TEM."
+        }
+      ]
+    }
+  ],
+  "brandSortMode": "default",
+  "productSortMode": "default",
+  "updatedAt": "2026-10-09T13:56:41.940Z",
+  "version": 1
+}
