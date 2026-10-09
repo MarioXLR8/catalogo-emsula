@@ -157,7 +157,7 @@
     flex-wrap:wrap;
   }
   .topbar-title{font-size:11.5px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;color:var(--txt-dim);}
-  .topbar-actions{display:flex;gap:8px;margin-left:auto}
+  .topbar-actions{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
   .tb-btn{
     display:flex;align-items:center;gap:7px;
     padding:8px 13px;border-radius:11px;
@@ -172,6 +172,8 @@
   .tb-btn svg{width:15px;height:15px;flex:0 0 auto}
   .tb-btn.primary{background:linear-gradient(135deg, rgba(91,140,255,.9), rgba(139,92,246,.85));border-color:rgba(255,255,255,.2);box-shadow:0 6px 18px rgba(91,140,255,.35), inset 0 1px 0 rgba(255,255,255,.3);}
   .tb-btn.primary:hover{background:linear-gradient(135deg, rgba(111,160,255,1), rgba(159,112,255,.95))}
+  .tb-btn.ghost{background:rgba(255,255,255,.03);color:var(--txt-dim)}
+  .tb-btn.ghost:hover{color:var(--txt)}
 
   .tb-status{
     font-size:11px;font-weight:500;
@@ -337,6 +339,7 @@
   .modal.open .modal-inner{transform:scale(1)}
 
   .modal-title{font-size:16px;font-weight:700;margin-bottom:18px;letter-spacing:-.2px;}
+  .modal-sub{font-size:12px;color:var(--txt-dim);line-height:1.5;margin-bottom:16px}
   .modal-close{
     position:absolute;top:14px;right:14px;
     width:32px;height:32px;border-radius:10px;
@@ -355,6 +358,7 @@
     margin-bottom:-6px;
   }
   .form input[type="text"],
+  .form input[type="password"],
   .form input[type="number"],
   .form input:not([type]),
   .form select,
@@ -375,6 +379,7 @@
   }
   .form select{cursor:pointer}
   .form select option{background:#0a0f22;color:var(--txt)}
+  .form-hint{font-size:10.5px;color:var(--txt-dim);line-height:1.5;margin-top:-4px}
 
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .form-color{
@@ -544,7 +549,7 @@
     <div class="topbar">
       <div class="topbar-title">🎨 Editor de catálogo</div>
       <div class="topbar-actions">
-        <button class="tb-btn primary" id="btnSave" title="Guardar progreso">
+        <button class="tb-btn primary" id="btnSave" title="Guardar en GitHub">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="6" width="20" height="13" rx="2"/>
             <circle cx="8.5" cy="12.5" r="2.5"/>
@@ -554,7 +559,7 @@
           </svg>
           <span>Guardar</span>
         </button>
-        <button class="tb-btn" id="btnRestore" title="Restaurar último guardado">
+        <button class="tb-btn" id="btnRestore" title="Recargar desde GitHub">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="3" width="20" height="5" rx="1.5"/>
             <rect x="2" y="10" width="20" height="5" rx="1.5"/>
@@ -563,7 +568,14 @@
             <circle cx="5" cy="12.5" r=".7" fill="currentColor" stroke="none"/>
             <circle cx="5" cy="19.5" r=".7" fill="currentColor" stroke="none"/>
           </svg>
-          <span>Restaurar</span>
+          <span>Recargar</span>
+        </button>
+        <button class="tb-btn ghost" id="btnSettings" title="Configuración">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span>Config</span>
         </button>
       </div>
       <div class="tb-status" id="tbStatus">Listo</div>
@@ -684,6 +696,26 @@
   </div>
 </div>
 
+<div class="modal" id="settingsModal">
+  <div class="modal-inner">
+    <button class="modal-close" id="settingsClose">✕</button>
+    <h3 class="modal-title">⚙️ Configuración de GitHub</h3>
+    <p class="modal-sub">Pega aquí tu token personal de GitHub para permitir que el catálogo guarde cambios automáticamente en el repositorio. Se guarda solo en este navegador.</p>
+    <div class="form">
+      <label>Repositorio (owner/repo)</label>
+      <input type="text" id="cfgRepo" placeholder="MarioXLR8/catalogo-emsula" readonly>
+      <label>Token personal de GitHub</label>
+      <input type="password" id="cfgToken" placeholder="github_pat_...">
+      <p class="form-hint">El token se guarda solo en tu navegador. Nunca se envía a terceros.</p>
+      <div id="cfgTokenStatus" class="form-hint"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="cfgClear">Borrar token</button>
+      <button class="btn-save" id="cfgSave">Guardar</button>
+    </div>
+  </div>
+</div>
+
 <div class="lightbox" id="lightbox">
   <div class="lb-inner" id="lbInner">
     <button class="lb-close" id="lbClose">✕</button>
@@ -714,38 +746,56 @@
 
 <script>
 /* =========================================================
-   CATÁLOGO BASE (se usa solo la primera vez)
+   CONFIGURACIÓN DE GITHUB
+   ========================================================= */
+const GH_CONFIG = {
+  owner: "MarioXLR8",
+  repo: "catalogo-emsula",
+  branch: "main",
+  jsonPath: "catalogo.json",
+  imgBase: "img/EMBED/"
+};
+
+/* =========================================================
+   CATÁLOGO INICIAL (se usa solo si el JSON de GitHub no existe aún)
+   Con las rutas ya mapeadas a tu carpeta img/
    ========================================================= */
 const INITIAL_CATALOG = [
   { brand:"Pepsi", tagline:"El sabor que refresca tus días.", c1:"#0b3d91", c2:"#e32934", letter:"P",
     products:[
-      {name:"Pepsi Zero Sugar", type:"lata",   volume:"355 ml",  detail:"Versión sin azúcar de Pepsi, con todo el sabor y cero calorías. Lata negra edición Max Taste."},
-      {name:"Pepsi Cola",       type:"lata",   volume:"330 ml",  detail:"Refresco de cola carbonatado en lata estándar. Disponible en paquete de 24 unidades."},
-      {name:"Pepsi Cola",       type:"pet",    volume:"500 ml",  detail:"Formato personal en botella PET. Práctica para llevar a cualquier parte."},
-      {name:"Pepsi Cola",       type:"pet",    volume:"1.25 L",  detail:"Formato mediano-grande en PET, ideal para compartir en pareja."},
-      {name:"Pepsi Cola",       type:"pet",    volume:"1.5 L",   detail:"Botella PET grande, refrescante y lista para compartir."},
-      {name:"Pepsi Cola",       type:"pet",    volume:"2 L",     detail:"Formato clásico para compartir en familia o con amigos."},
-      {name:"Pepsi Cola",       type:"pet",    volume:"2 L",     detail:"Botella PET de 2 litros con etiqueta azul, presentación tradicional."},
-      {name:"Pepsi Cola",       type:"pet",    volume:"2 L",     detail:"Botella PET de 2 litros con tapa transparente, edición alternativa."},
-      {name:"Pepsi Cola",       type:"pet",    volume:"3 L",     detail:"Formato Súper Familiar en PET, la opción más rendidora para el hogar."},
-      {name:"Pepsi Light",      type:"pet",    volume:"2 L",     detail:"La versión ligera de Pepsi, con menos calorías y el mismo sabor refrescante."},
-      {name:"Pepsi Cola",       type:"vidrio", volume:"355 ml",  detail:"Botella de vidrio retornable con diseño twist. Presentación tradicional."},
-      {name:"Pepsi Cola",       type:"vidrio", volume:"500 ml",  detail:"Botella de vidrio retornable mediana, con etiqueta azul clásica de Pepsi."},
-      {name:"Pepsi Cola",       type:"vidrio", volume:"1 L",     detail:"Botella de vidrio retornable premium, elegancia y sabor en cada sorbo."}
+      {name:"Pepsi Zero Sugar", type:"lata",   volume:"355 ml", img:"img/PEPSI/pepsiblack-lata-12oz.png",   detail:"Versión sin azúcar de Pepsi, con todo el sabor y cero calorías. Lata negra edición Max Taste."},
+      {name:"Pepsi Cola",       type:"lata",   volume:"355 ml", img:"img/PEPSI/pepsi-lata-12oz.png",        detail:"Refresco de cola carbonatado en lata estándar. Disponible en paquete de 24 unidades."},
+      {name:"Pepsi Cola",       type:"pet",    volume:"500 ml", img:"img/PEPSI/pepsi-plastico-500ml.png",   detail:"Formato personal en botella PET. Práctica para llevar a cualquier parte."},
+      {name:"Pepsi Cola",       type:"pet",    volume:"6.5 oz", img:"img/PEPSI/pepsi-plastico-6.5oz.png",   detail:"Formato pequeño en PET, ideal para loncheras."},
+      {name:"Pepsi Cola",       type:"vidrio", volume:"6.5 oz", img:"img/PEPSI/pepsi-vidrio-6.5oz.png",     detail:"Botella de vidrio retornable pequeña."},
+      {name:"Pepsi Cola",       type:"vidrio", volume:"355 ml", img:"img/PEPSI/pepsi-vidrio-12oz.png",      detail:"Botella de vidrio retornable, tamaño estándar."},
+      {name:"Pepsi Cola",       type:"vidrio", volume:"500 ml", img:"img/PEPSI/pepsi-vidrio-500ml.png",     detail:"Botella de vidrio retornable mediana."},
+      {name:"Pepsi Cola",       type:"vidrio", volume:"1.25 L", img:"img/PEPSI/pepsi-vidrio-1.25L.png",     detail:"Botella de vidrio retornable familiar."},
+      {name:"Pepsi Light",      type:"pet",    volume:"500 ml", img:"img/PEPSI/pepsilight-plastico-500ml.png", detail:"Versión ligera de Pepsi en botella personal."},
+      {name:"Pepsi Light",      type:"pet",    volume:"1 L",    img:"img/PEPSI/pepsilight-plastico-1L.png",    detail:"Versión ligera de Pepsi en botella de 1 litro."},
+      {name:"Pepsi Light",      type:"pet",    volume:"1.25 L", img:"img/PEPSI/pepsilight-plastico-1.25L.png", detail:"Versión ligera de Pepsi en botella mediana."},
+      {name:"Pepsi Light",      type:"pet",    volume:"1.5 L",  img:"img/PEPSI/pepsilight-plastico-1.5L.png",  detail:"Versión ligera de Pepsi en botella grande."},
+      {name:"Pepsi Light",      type:"pet",    volume:"2 L",    img:"img/PEPSI/pepsilight-plastico-2L.png",    detail:"Versión ligera de Pepsi en botella para compartir."},
+      {name:"Pepsi Light",      type:"pet",    volume:"3 L",    img:"img/PEPSI/pepsilight-plastico-3L.png",    detail:"Versión ligera de Pepsi en formato familiar."}
     ]
   },
   { brand:"7 Up", tagline:"Refrescante sabor lima-limón.", c1:"#00843d", c2:"#7ac143", letter:"7",
     products:[
-      {name:"7 Up", type:"lata", volume:"355 ml", detail:"Refresco carbonatado de lima-limón. Paquete de 24 unidades."},
-      {name:"7 Up", type:"pet",  volume:"500 ml", detail:"Botella personal en PET."},
-      {name:"7 Up", type:"pet",  volume:"1.1 L",  detail:"Botella mediana en PET."},
-      {name:"7 Up", type:"pet",  volume:"2 L",    detail:"Botella para compartir en PET."},
-      {name:"7 Up", type:"pet",  volume:"3 L",    detail:"Botella familiar en PET."}
+      {name:"7 Up", type:"lata",   volume:"355 ml", img:"img/7Up/7Up-lata-12oz.png",       detail:"Refresco carbonatado de lima-limón en lata."},
+      {name:"7 Up", type:"vidrio", volume:"355 ml", img:"img/7Up/7up-vidrio-12oz.png",     detail:"Botella de vidrio retornable estándar."},
+      {name:"7 Up", type:"vidrio", volume:"500 ml", img:"img/7Up/7up-vidrio-500ml.png",    detail:"Botella de vidrio retornable mediana."},
+      {name:"7 Up", type:"vidrio", volume:"1 L",    img:"img/7Up/7up-vidrio-1.png",        detail:"Botella de vidrio retornable de 1 litro."},
+      {name:"7 Up", type:"vidrio", volume:"1.25 L", img:"img/7Up/7up-vidrio-1.25L.png",    detail:"Botella de vidrio retornable familiar."},
+      {name:"7 Up", type:"pet",    volume:"500 ml", img:"img/7Up/7up-PET-500ml.png",       detail:"Botella personal en PET."},
+      {name:"7 Up", type:"pet",    volume:"1.5 L",  img:"img/7Up/7Up-PET-1.5L.png",        detail:"Botella grande en PET."},
+      {name:"7 Up", type:"pet",    volume:"2 L",    img:"img/7Up/7Up-PET-2L.png",          detail:"Botella para compartir en PET."},
+      {name:"7 Up", type:"pet",    volume:"3 L",    img:"img/7Up/7Up-PET-3L.png",          detail:"Botella familiar en PET."},
+      {name:"Teem",  type:"vidrio", volume:"355 ml", img:"img/7Up/Teem-vidrio-12oz.png",   detail:"Refresco Teem en botella de vidrio retornable."}
     ]
   },
   { brand:"Mirinda", tagline:"Sabor frutal que enamora.", c1:"#ff7a00", c2:"#ffb300", letter:"M",
     products:[
-      {name:"Mirinda Naranja", type:"lata", volume:"355 ml", detail:"Refresco carbonatado sabor naranja. Paquete de 24 unidades."},
+      {name:"Mirinda Naranja", type:"lata", volume:"355 ml", detail:"Refresco carbonatado sabor naranja."},
       {name:"Mirinda Naranja", type:"pet",  volume:"600 ml", detail:"Botella personal en PET."},
       {name:"Mirinda Naranja", type:"pet",  volume:"2 L",    detail:"Botella para compartir en PET."},
       {name:"Mirinda Naranja", type:"pet",  volume:"3 L",    detail:"Botella familiar en PET."},
@@ -764,8 +814,8 @@ const INITIAL_CATALOG = [
   },
   { brand:"Mountain Dew", tagline:"Energía cítrica al máximo.", c1:"#7dc242", c2:"#f5e400", letter:"D",
     products:[
-      {name:"Mountain Dew", type:"lata", volume:"355 ml", detail:"Refresco cítrico con alto contenido de cafeína. Paquete de 24 unidades."},
-      {name:"Mountain Dew", type:"lata", volume:"500 ml", detail:"Formato XP Edition, edición especial de mayor tamaño."},
+      {name:"Mountain Dew", type:"lata", volume:"355 ml", detail:"Refresco cítrico con alto contenido de cafeína."},
+      {name:"Mountain Dew", type:"lata", volume:"500 ml", detail:"Formato XP Edition."},
       {name:"Mountain Dew Jamaica Cherry Blossom", type:"pet", volume:"500 ml", detail:"Fusión de flor de Jamaica con toque de cerezo."},
       {name:"Mountain Dew Jamaica Cherry Blossom", type:"pet", volume:"1.1 L",  detail:"Mismo sabor innovador en formato mediano."},
       {name:"Mountain Dew Pink Drip", type:"lata", volume:"355 ml", detail:"Sabor nuevo y refrescante en lata."},
@@ -774,29 +824,33 @@ const INITIAL_CATALOG = [
   },
   { brand:"Aguazul", tagline:"Agua purificada de confianza.", c1:"#00a0e3", c2:"#7fdbff", letter:"A",
     products:[
-      {name:"Aguazul", type:"botellon", volume:"5 Galones", detail:"Botellón para hogar y oficina. Una de las presentaciones más vendidas."},
-      {name:"Aguazul", type:"lata",     volume:"12 oz",     detail:"Agua purificada en lata, ideal para eventos."},
-      {name:"Aguazul", type:"pet",      volume:"500 ml",    detail:"Botella personal pequeña en PET."},
-      {name:"Aguazul", type:"pet",      volume:"750 ml",    detail:"Botella personal de tamaño mediano."},
-      {name:"Aguazul", type:"pet",      volume:"1.1 L",     detail:"Botella mediana en PET."},
-      {name:"Aguazul", type:"pet",      volume:"1.5 L",     detail:"Botella grande para compartir."},
-      {name:"Aguazul", type:"prepack",  volume:"473 ml",    detail:"Presentación en bolsa sellada, práctica y económica."},
-      {name:"Aguazul Life",  type:"pet", volume:"—", detail:"Línea de agua purificada con beneficios adicionales."},
-      {name:"Aguazul Sport", type:"pet", volume:"—", detail:"Línea de agua purificada diseñada para deportistas."}
+      {name:"Aguazul", type:"botellon", volume:"5 Galones", detail:"Botellón para hogar y oficina."},
+      {name:"Aguazul", type:"lata",     volume:"12 oz",     detail:"Agua purificada en lata."},
+      {name:"Aguazul", type:"pet",      volume:"500 ml",    detail:"Botella personal pequeña."},
+      {name:"Aguazul", type:"pet",      volume:"750 ml",    detail:"Botella personal mediana."},
+      {name:"Aguazul", type:"pet",      volume:"1.1 L",     detail:"Botella mediana."},
+      {name:"Aguazul", type:"pet",      volume:"1.5 L",     detail:"Botella grande."},
+      {name:"Aguazul", type:"prepack",  volume:"473 ml",    detail:"Presentación en bolsa sellada."},
+      {name:"Aguazul Life",  type:"pet", volume:"—", detail:"Línea con beneficios adicionales."},
+      {name:"Aguazul Sport", type:"pet", volume:"—", detail:"Línea diseñada para deportistas."}
     ]
   },
   { brand:"Gatorade", tagline:"Rehidrata, repone, rinde.", c1:"#f58220", c2:"#ffb347", letter:"G",
     products:[
       {name:"Gatorade", type:"botella", volume:"600 ml", detail:"Bebida deportiva. Sabores: Uva, Ponche de Frutas, Berry."},
-      {name:"Gatorade", type:"botella", volume:"1 L",    detail:"Formato de 1 litro, ideal para entrenamientos prolongados. Sabor Frambuesa."},
-      {name:"Gatorade", type:"botella", volume:"1.25 L", detail:"Botella grande para mayor hidratación."},
+      {name:"Gatorade", type:"botella", volume:"1 L",    detail:"Formato de 1 litro."},
+      {name:"Gatorade", type:"botella", volume:"1.25 L", detail:"Botella grande."},
       {name:"Gatorade", type:"botella", volume:"2 L",    detail:"Formato para compartir en equipo."},
-      {name:"Gatorade", type:"botella", volume:"3 L",    detail:"Formato familiar o para eventos deportivos."},
+      {name:"Gatorade", type:"botella", volume:"3 L",    detail:"Formato familiar."},
       {name:"Gatorade Zero", type:"botella", volume:"—", detail:"Versión sin azúcar. Sabores: Glacier Freeze y Fresa Kiwi."}
     ]
   },
   { brand:"Gatorlit", tagline:"Hidratación más rápida y efectiva.", c1:"#00b5ad", c2:"#7fffe8", letter:"G",
-    products:[{name:"Gatorlit", type:"botella", volume:"620 ml", detail:"Nueva apuesta de Gatorade. Sabores: Mora, Fresa Kiwi, Uva."}]
+    products:[
+      {name:"Gatorlit Naranja", type:"botella", volume:"20 oz", img:"img/GATORLIT/Gatorlit-Naranja-PET-20z.png", detail:"Nueva apuesta de Gatorade. Sabor naranja."},
+      {name:"Gatorlit Coco",    type:"botella", volume:"20 oz", img:"img/GATORLIT/Gatorlit-Coco-PET-20z.png",    detail:"Nueva apuesta de Gatorade. Sabor coco."},
+      {name:"Gatorlit Uva",     type:"botella", volume:"20 oz", img:"img/GATORLIT/Gatorlit-Uva-PET-20z.png",     detail:"Nueva apuesta de Gatorade. Sabor uva."}
+    ]
   },
   { brand:"Lipton Ice Tea", tagline:"Té frío listo para beber.", c1:"#f2c200", c2:"#fff08a", letter:"L",
     products:[
@@ -817,7 +871,7 @@ const INITIAL_CATALOG = [
       {name:"Enjoy", type:"botella", volume:"266 ml", detail:"Botella pequeña."},
       {name:"Enjoy", type:"botella", volume:"500 ml", detail:"Botella personal."},
       {name:"Enjoy", type:"botella", volume:"2 L",    detail:"Botella para compartir."},
-      {name:"Enjoy Néctar", type:"botella", volume:"—", detail:"Néctar de frutas. Sabores: Manzana, Pera, Melocotón, Piña."}
+      {name:"Enjoy Néctar", type:"botella", volume:"—", detail:"Néctar de frutas."}
     ]
   },
   { brand:"Quanty", tagline:"Jugo práctico para cualquier momento.", c1:"#8b5cf6", c2:"#c4b5fd", letter:"Q",
@@ -826,21 +880,28 @@ const INITIAL_CATALOG = [
   { brand:"Adrenaline Rush", tagline:"Energía sin límites.", c1:"#e4002b", c2:"#ff7a8a", letter:"A",
     products:[
       {name:"Adrenaline Rush", type:"lata", volume:"10 oz", detail:"Bebida energética. Sabores: Maracuyá, Mango Salvaje."},
-      {name:"Adrenaline Rush", type:"lata", volume:"16 oz", detail:"Formato grande de la bebida energética."}
+      {name:"Adrenaline Rush", type:"lata", volume:"16 oz", detail:"Formato grande."}
     ]
   },
   { brand:"AMP", tagline:"Impulso para tu día.", c1:"#00a551", c2:"#7fffb0", letter:"A",
-    products:[{name:"AMP", type:"lata", volume:"—", detail:"Bebida energética de la línea AMP."}]
+    products:[
+      {name:"AMP", type:"pet", volume:"500 ml", img:"img/AMP/Amp-PET-500ml.png", detail:"Bebida energética en botella personal."},
+      {name:"AMP", type:"pet", volume:"12 oz",  img:"img/AMP/Amp-PET-12oz.png",  detail:"Bebida energética en formato pequeño."},
+      {name:"AMP", type:"pet", volume:"1.1 L",  img:"img/AMP/Amp-PET-1.1L.png",  detail:"Bebida energética en botella mediana."}
+    ]
   },
   { brand:"Rockstar", tagline:"Rendimiento al siguiente nivel.", c1:"#f5c400", c2:"#fff29a", letter:"R",
-    products:[{name:"Rockstar", type:"botella", volume:"500 ml", detail:"Bebida energética dirigida a quienes buscan rendimiento."}]
+    products:[
+      {name:"Rockstar Energy", type:"lata", volume:"—",       img:"img/ROCKSTAR/rockstar-energy-lata.png",             detail:"Bebida energética en lata."},
+      {name:"Rockstar Energy", type:"pet",  volume:"500 ml",  img:"img/ROCKSTAR/rockstar-energy-plastico-500ml.png",   detail:"Bebida energética en botella PET."}
+    ]
   },
   { brand:"Zen", tagline:"Refresco con equilibrio.", c1:"#00c2a8", c2:"#8fffe8", letter:"Z",
     products:[{name:"Zen", type:"botella", volume:"—", detail:"Bebida refrescante de la marca Zen."}]
   },
   { brand:"Montana", tagline:"El sabor de la fruta.", c1:"#c8102e", c2:"#ff8093", letter:"M",
     products:[
-      {name:"Montana", type:"lata",    volume:"330 ml", detail:"Bebida refrescante con 10%–15% de fruta. Sabor naranja."},
+      {name:"Montana", type:"lata",    volume:"330 ml", detail:"Bebida refrescante con 10%–15% de fruta."},
       {name:"Montana", type:"botella", volume:"266 ml", detail:"Botella pequeña."},
       {name:"Montana", type:"botella", volume:"500 ml", detail:"Botella personal."},
       {name:"Montana", type:"botella", volume:"2 L",    detail:"Botella para compartir."}
@@ -848,13 +909,13 @@ const INITIAL_CATALOG = [
   },
   { brand:"H2OH", tagline:"Hidratación con sabor.", c1:"#00b0f0", c2:"#a0e8ff", letter:"H",
     products:[
-      {name:"H2OH", type:"lata",    volume:"12 oz",  detail:"Bebida hidratante con sabores, en lata."},
+      {name:"H2OH", type:"lata",    volume:"12 oz",  detail:"Bebida hidratante en lata."},
       {name:"H2OH", type:"botella", volume:"500 ml", detail:"Bebida hidratante en botella personal."},
       {name:"H2OH", type:"botella", volume:"1.1 L",  detail:"Bebida hidratante en botella mediana."}
     ]
   },
   { brand:"Sting", tagline:"Energía que despierta.", c1:"#e31e24", c2:"#ff8a8f", letter:"S",
-    products:[{name:"Sting", type:"lata", volume:"—", detail:"Bebida energética de la marca Sting."}]
+    products:[{name:"Sting Energy", type:"lata", volume:"—", img:"img/STING/sting-energy.png", detail:"Bebida energética de la marca Sting."}]
   },
   { brand:"Cool Malta", tagline:"Alternativa sin alcohol.", c1:"#8b5a2b", c2:"#d9a86c", letter:"C",
     products:[{name:"Cool Malta", type:"botella", volume:"—", detail:"Bebida de malta, alternativa sin alcohol."}]
@@ -867,9 +928,9 @@ const INITIAL_CATALOG = [
 /* =========================================================
    ESTADO GLOBAL
    ========================================================= */
-const STORAGE_KEY = "emsula-catalog-v3";
+const TOKEN_KEY = "emsula-github-token";
+const LOCAL_CACHE_KEY = "emsula-local-cache-v1";
 let catalog = [];
-let imageOverrides = {};
 let unsavedChanges = false;
 let currentBrandId = null;
 let idSeq = 0;
@@ -884,102 +945,118 @@ function buildInitialCatalog(){
     brand: b.brand,
     tagline: b.tagline,
     c1: b.c1, c2: b.c2, letter: b.letter,
-    products: b.products.map(p => ({ id: nextId("p"), ...p }))
+    products: b.products.map(p => ({ id: nextId("p"), img: p.img || "", ...p }))
   }));
 }
 
 /* =========================================================
-   INDEXEDDB (para las imágenes)
+   GITHUB API
    ========================================================= */
-const IDB_NAME = "emsula-catalog-db";
-const IDB_STORE = "images";
-const IDB_VERSION = 1;
+function getToken(){ return localStorage.getItem(TOKEN_KEY) || ""; }
+function setToken(t){ if(t) localStorage.setItem(TOKEN_KEY, t); else localStorage.removeItem(TOKEN_KEY); }
 
-let idbPromise = null;
-
-function openImageDB(){
-  if(idbPromise) return idbPromise;
-  idbPromise = new Promise((resolve, reject) => {
-    if(!("indexedDB" in window)){
-      reject(new Error("IndexedDB no disponible"));
-      return;
-    }
-    const req = indexedDB.open(IDB_NAME, IDB_VERSION);
-    req.onerror = () => reject(req.error || new Error("Error IndexedDB"));
-    req.onsuccess = () => resolve(req.result);
-    req.onupgradeneeded = () => {
-      const db = req.result;
-      if(!db.objectStoreNames.contains(IDB_STORE)){
-        db.createObjectStore(IDB_STORE);
-      }
-    };
-  });
-  return idbPromise;
+function toBase64Utf8(str){
+  return btoa(unescape(encodeURIComponent(str)));
 }
 
-async function idbPutMany(obj){
-  const entries = Object.entries(obj);
-  if(entries.length === 0) return;
-  const db = await openImageDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(IDB_STORE, "readwrite");
-    const store = tx.objectStore(IDB_STORE);
-    entries.forEach(([k, v]) => store.put(v, k));
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error);
-  });
+async function ghReadJson(){
+  // Cache-buster para evitar respuestas cacheadas
+  const rawUrl = `https://raw.githubusercontent.com/${GH_CONFIG.owner}/${GH_CONFIG.repo}/${GH_CONFIG.branch}/${GH_CONFIG.jsonPath}?t=${Date.now()}`;
+  const res = await fetch(rawUrl, { cache: "no-store" });
+  if(res.status === 404) return null;
+  if(!res.ok) throw new Error("No se pudo leer catalogo.json: " + res.status);
+  return await res.json();
 }
 
-async function idbGetAll(){
-  const db = await openImageDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(IDB_STORE, "readonly");
-    const store = tx.objectStore(IDB_STORE);
-    const result = {};
-    const req = store.openCursor();
-    req.onsuccess = () => {
-      const cursor = req.result;
-      if(cursor){
-        result[cursor.key] = cursor.value;
-        cursor.continue();
-      } else {
-        resolve(result);
-      }
-    };
-    req.onerror = () => reject(req.error);
+async function ghWriteJson(data, message){
+  const token = getToken();
+  if(!token) throw new Error("Falta el token de GitHub");
+  const apiUrl = `https://api.github.com/repos/${GH_CONFIG.owner}/${GH_CONFIG.repo}/contents/${GH_CONFIG.jsonPath}`;
+
+  let sha = null;
+  try{
+    const r = await fetch(apiUrl, { headers: { Authorization: "Bearer " + token }});
+    if(r.ok){ const j = await r.json(); sha = j.sha; }
+  }catch(e){ /* ignore */ }
+
+  const body = {
+    message: message || "Actualizar catálogo",
+    content: toBase64Utf8(JSON.stringify(data, null, 2)),
+    branch: GH_CONFIG.branch
+  };
+  if(sha) body.sha = sha;
+
+  const res = await fetch(apiUrl, {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+      "Accept": "application/vnd.github+json"
+    },
+    body: JSON.stringify(body)
   });
+  if(!res.ok){
+    const err = await res.text();
+    throw new Error("GitHub PUT " + res.status + ": " + err);
+  }
+  return await res.json();
 }
 
-async function idbGetAllKeys(){
-  const db = await openImageDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(IDB_STORE, "readonly");
-    const req = tx.objectStore(IDB_STORE).getAllKeys();
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
+async function ghUploadFile(path, base64WithHeader, message){
+  const token = getToken();
+  if(!token) throw new Error("Falta el token de GitHub");
+  const apiUrl = `https://api.github.com/repos/${GH_CONFIG.owner}/${GH_CONFIG.repo}/contents/${path}`;
+
+  let sha = null;
+  try{
+    const r = await fetch(apiUrl, { headers: { Authorization: "Bearer " + token }});
+    if(r.ok){ const j = await r.json(); sha = j.sha; }
+  }catch(e){ /* ignore */ }
+
+  const cleanB64 = base64WithHeader.includes(",") ? base64WithHeader.split(",")[1] : base64WithHeader;
+
+  const body = {
+    message: message || ("Subir " + path),
+    content: cleanB64,
+    branch: GH_CONFIG.branch
+  };
+  if(sha) body.sha = sha;
+
+  const res = await fetch(apiUrl, {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+      "Accept": "application/vnd.github+json"
+    },
+    body: JSON.stringify(body)
   });
+  if(!res.ok){
+    const err = await res.text();
+    throw new Error("GitHub upload " + res.status + ": " + err);
+  }
+  return await res.json();
 }
 
-async function idbDeleteMany(keys){
-  if(!keys || keys.length === 0) return;
-  const db = await openImageDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(IDB_STORE, "readwrite");
-    const store = tx.objectStore(IDB_STORE);
-    keys.forEach(k => store.delete(k));
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error);
-  });
+/* =========================================================
+   CACHE LOCAL (por si el JSON de GitHub no existe aún)
+   ========================================================= */
+function saveLocalCache(){
+  try{
+    localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify({
+      catalog, brandSortMode, productSortMode
+    }));
+  }catch(e){ console.warn("Cache local falló:", e); }
 }
 
-async function idbClearAll(){
-  const db = await openImageDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(IDB_STORE, "readwrite");
-    tx.objectStore(IDB_STORE).clear();
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error);
-  });
+function loadLocalCache(){
+  try{
+    const raw = localStorage.getItem(LOCAL_CACHE_KEY);
+    if(!raw) return null;
+    const data = JSON.parse(raw);
+    if(!data.catalog) return null;
+    return data;
+  }catch(e){ return null; }
 }
 
 /* =========================================================
@@ -1006,18 +1083,10 @@ const TYPE_ORDER = { lata:1, vidrio:2, pet:3, botella:4, botellon:5, prepack:6, 
 function sortBrands(list, mode){
   const arr = list.slice();
   switch(mode){
-    case "az":
-      arr.sort((a,b) => a.brand.localeCompare(b.brand, "es", {sensitivity:"base"}));
-      break;
-    case "za":
-      arr.sort((a,b) => b.brand.localeCompare(a.brand, "es", {sensitivity:"base"}));
-      break;
-    case "count-desc":
-      arr.sort((a,b) => b.products.length - a.products.length);
-      break;
-    case "count-asc":
-      arr.sort((a,b) => a.products.length - b.products.length);
-      break;
+    case "az": arr.sort((a,b) => a.brand.localeCompare(b.brand, "es", {sensitivity:"base"})); break;
+    case "za": arr.sort((a,b) => b.brand.localeCompare(a.brand, "es", {sensitivity:"base"})); break;
+    case "count-desc": arr.sort((a,b) => b.products.length - a.products.length); break;
+    case "count-asc": arr.sort((a,b) => a.products.length - b.products.length); break;
   }
   return arr;
 }
@@ -1025,12 +1094,8 @@ function sortBrands(list, mode){
 function sortProducts(list, mode){
   const arr = list.slice();
   switch(mode){
-    case "name-az":
-      arr.sort((a,b) => a.name.localeCompare(b.name, "es", {sensitivity:"base"}));
-      break;
-    case "name-za":
-      arr.sort((a,b) => b.name.localeCompare(a.name, "es", {sensitivity:"base"}));
-      break;
+    case "name-az": arr.sort((a,b) => a.name.localeCompare(b.name, "es", {sensitivity:"base"})); break;
+    case "name-za": arr.sort((a,b) => b.name.localeCompare(a.name, "es", {sensitivity:"base"})); break;
     case "type":
       arr.sort((a,b) => {
         const ta = TYPE_ORDER[a.type] || 99;
@@ -1039,18 +1104,14 @@ function sortProducts(list, mode){
         return volumeToMl(a.volume) - volumeToMl(b.volume);
       });
       break;
-    case "volume-asc":
-      arr.sort((a,b) => volumeToMl(a.volume) - volumeToMl(b.volume));
-      break;
-    case "volume-desc":
-      arr.sort((a,b) => volumeToMl(b.volume) - volumeToMl(a.volume));
-      break;
+    case "volume-asc": arr.sort((a,b) => volumeToMl(a.volume) - volumeToMl(b.volume)); break;
+    case "volume-desc": arr.sort((a,b) => volumeToMl(b.volume) - volumeToMl(a.volume)); break;
   }
   return arr;
 }
 
 /* =========================================================
-   ICONOS SVG
+   ICONOS SVG (fallback)
    ========================================================= */
 let gradId = 0;
 function iconSVG(type, c1, c2){
@@ -1105,9 +1166,7 @@ function iconSVG(type, c1, c2){
       <rect x="38" y="34" width="20" height="76" rx="6" fill="url(#${id})" opacity=".85"/>
       <rect x="25" y="26" width="20" height="88" rx="6" fill="url(#${id})"/>
       <ellipse cx="35" cy="26" rx="10" ry="3.5" fill="#dfe6f5" opacity=".85"/>
-      <rect x="27" y="60" width="16" height="14" fill="rgba(255,255,255,.18)"/>
-      <rect x="14" y="60" width="16" height="14" fill="rgba(255,255,255,.12)"/>
-      <rect x="40" y="60" width="16" height="14" fill="rgba(255,255,255,.12)"/>`);
+      <rect x="27" y="60" width="16" height="14" fill="rgba(255,255,255,.18)"/>`);
     default: return wrap(`
       <path d="M27 32 q8 -10 16 0 v76 q0 12 -8 12 q-8 0 -8 -12 z" fill="url(#${id})"/>
       <rect x="31" y="14" width="8" height="16" rx="3" fill="${c1}"/>
@@ -1118,106 +1177,13 @@ function iconSVG(type, c1, c2){
 }
 
 function typeLabel(t){
-  return t === "lata" ? "Lata"
-       : t === "pet" ? "PET"
-       : t === "vidrio" ? "Vidrio"
-       : t === "botellon" ? "Botellón"
-       : t === "prepack" ? "Prepack"
-       : t === "pack" ? "Paquete"
-       : "Botella";
+  return t === "lata" ? "Lata" : t === "pet" ? "PET" : t === "vidrio" ? "Vidrio"
+       : t === "botellon" ? "Botellón" : t === "prepack" ? "Prepack"
+       : t === "pack" ? "Paquete" : "Botella";
 }
 
-/* =========================================================
-   PERSISTENCIA (catálogo en localStorage + imágenes en IndexedDB)
-   ========================================================= */
-async function loadFromStorage(){
-  try{
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(!raw) return false;
-    const data = JSON.parse(raw);
-    if(!data.catalog || !Array.isArray(data.catalog)) return false;
-
-    catalog = data.catalog;
-    if(data.brandSortMode) brandSortMode = data.brandSortMode;
-    if(data.productSortMode) productSortMode = data.productSortMode;
-
-    /* Cargar imágenes desde IndexedDB */
-    imageOverrides = await idbGetAll();
-
-    /* MIGRACIÓN: si el formato viejo tenía imágenes embebidas, moverlas */
-    if(data.imageOverrides && typeof data.imageOverrides === "object"
-       && Object.keys(data.imageOverrides).length > 0){
-      const legacy = data.imageOverrides;
-      const count = Object.keys(legacy).length;
-      console.info("Migrando " + count + " imágenes de localStorage a IndexedDB...");
-      try{
-        await idbPutMany(legacy);
-        Object.keys(legacy).forEach(k => {
-          if(!imageOverrides[k]) imageOverrides[k] = legacy[k];
-        });
-        /* Reescribir localStorage limpio (sin imágenes) */
-        const clean = {
-          catalog,
-          brandSortMode,
-          productSortMode
-        };
-        try{
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(clean));
-          setStatus("Migradas " + count + " imágenes a IndexedDB ✓", "success");
-        }catch(e){
-          console.warn("localStorage sigue lleno, pero las imágenes ya están en IndexedDB:", e);
-          setStatus("Imágenes migradas a IndexedDB", "success");
-        }
-      }catch(e){
-        console.error("Error migrando:", e);
-        Object.assign(imageOverrides, legacy);
-      }
-    } else {
-      const b = catalog.length;
-      const p = catalog.reduce((s,x) => s + x.products.length, 0);
-      const imgs = Object.keys(imageOverrides).length;
-      setStatus("Cargado ✓ (" + b + " marcas · " + p + " productos · " + imgs + " img)", "success");
-    }
-    return true;
-  }catch(e){
-    console.error(e);
-    setStatus("Error al cargar: " + (e.message || e), "err");
-    return false;
-  }
-}
-
-async function saveToStorage(){
-  /* 1) Catálogo (pequeño) → localStorage */
-  try{
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      catalog,
-      brandSortMode,
-      productSortMode
-    }));
-  }catch(e){
-    console.error("localStorage:", e);
-    setStatus("Error al guardar catálogo en localStorage", "err");
-    return false;
-  }
-
-  /* 2) Imágenes (grandes) → IndexedDB */
-  try{
-    const currentKeys = Object.keys(imageOverrides);
-    const existingKeys = await idbGetAllKeys();
-    const toDelete = existingKeys.filter(k => !currentKeys.includes(k));
-    if(toDelete.length) await idbDeleteMany(toDelete);
-    if(currentKeys.length) await idbPutMany(imageOverrides);
-
-    unsavedChanges = false;
-    const b = catalog.length;
-    const p = catalog.reduce((s,x) => s + x.products.length, 0);
-    setStatus("Guardado ✓ (" + b + " marcas · " + p + " productos · " + currentKeys.length + " img)", "success");
-    return true;
-  }catch(e){
-    console.error("IndexedDB:", e);
-    setStatus("Error al guardar imágenes: " + (e.message || e), "err");
-    return false;
-  }
+function escapeHTML(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 function setStatus(text, type){
@@ -1228,11 +1194,12 @@ function setStatus(text, type){
 
 function markUnsaved(){
   unsavedChanges = true;
+  saveLocalCache();
   setStatus("Cambios sin guardar", "warn");
 }
 
 /* =========================================================
-   COMPRESIÓN DE IMAGEN (más agresiva para ahorrar espacio)
+   COMPRESIÓN DE IMAGEN
    ========================================================= */
 function compressImage(file, maxDim = 480, quality = 0.85){
   return new Promise((resolve, reject) => {
@@ -1293,7 +1260,6 @@ const lbEdit      = document.getElementById("lbEdit");
 const lbEditLabel = document.getElementById("lbEditLabel");
 const lbRemove    = document.getElementById("lbRemove");
 const fileInput   = document.getElementById("fileInput");
-
 const brandSortEl = document.getElementById("brandSort");
 const productSortEl = document.getElementById("productSort");
 
@@ -1329,10 +1295,6 @@ function renderSidebar(filter=""){
     };
     brandListEl.appendChild(item);
   });
-}
-
-function escapeHTML(s){
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 /* =========================================================
@@ -1372,12 +1334,10 @@ function renderMain(){
   const orderedProducts = sortProducts(b.products, productSortMode);
 
   orderedProducts.forEach((p, i) => {
-    const key = b.id + "::" + p.id;
-    const hasImg = !!imageOverrides[key];
+    const hasImg = !!p.img;
 
     const card = document.createElement("div");
     card.className = "card" + (hasImg ? " has-custom" : "");
-    card.dataset.key = key;
     card.dataset.productId = p.id;
     card.style.setProperty("--c1", b.c1);
     card.style.animationDelay = (i * 40) + "ms";
@@ -1396,7 +1356,7 @@ function renderMain(){
       </div>
       <div class="card-name">${escapeHTML(p.name)}</div>
       <div class="card-volume">${escapeHTML(p.volume)}</div>
-      <div class="card-detail">${escapeHTML(p.detail)}</div>`;
+      <div class="card-detail">${escapeHTML(p.detail || "")}</div>`;
 
     const visual = createVisual(p, b);
     card.insertBefore(visual, card.querySelector(".card-name"));
@@ -1415,11 +1375,14 @@ function renderMain(){
 function createVisual(product, brand){
   const wrap = document.createElement("div");
   wrap.className = "icon-wrap";
-  const key = brand.id + "::" + product.id;
-  const override = imageOverrides[key];
-  if(override){
+  if(product.img){
     const img = document.createElement("img");
-    img.src = override; img.alt = product.name;
+    img.src = product.img;
+    img.alt = product.name;
+    img.onerror = () => {
+      // Si la imagen del repo no carga, caemos al SVG
+      wrap.innerHTML = iconSVG(product.type, brand.c1, brand.c2);
+    };
     wrap.appendChild(img);
     return wrap;
   }
@@ -1437,7 +1400,7 @@ function openLightbox(brand, product){
   lbTag.textContent = brand.brand + " · " + typeLabel(product.type);
   lbName.textContent = product.name;
   lbVolume.textContent = product.volume;
-  lbDetail.textContent = product.detail;
+  lbDetail.textContent = product.detail || "";
   lbInner.style.setProperty("--lb-c", brand.c1);
   renderLightboxImage();
   lightbox.classList.add("open");
@@ -1446,11 +1409,11 @@ function openLightbox(brand, product){
 
 function renderLightboxImage(){
   lbImgWrap.innerHTML = "";
-  const key = lbBrand.id + "::" + lbProduct.id;
-  const override = imageOverrides[key];
-  if(override){
+  if(lbProduct.img){
     const img = document.createElement("img");
-    img.src = override; img.alt = lbProduct.name;
+    img.src = lbProduct.img;
+    img.alt = lbProduct.name;
+    img.onerror = () => { lbImgWrap.innerHTML = iconSVG(lbProduct.type, lbBrand.c1, lbBrand.c2); };
     lbImgWrap.appendChild(img);
     lbEditLabel.textContent = "Cambiar imagen";
     lbRemove.style.display = "flex";
@@ -1474,27 +1437,28 @@ lbEdit.onclick = () => {
   fileInput.value = "";
   fileInput.click();
 };
+
 fileInput.onchange = async (e) => {
   const file = e.target.files[0];
   if(!file || !lbBrand || !lbProduct) return;
   try{
     setStatus("Procesando imagen...", "warn");
     const dataUrl = await compressImage(file);
-    const key = lbBrand.id + "::" + lbProduct.id;
-    imageOverrides[key] = dataUrl;
+    /* Se guarda como data URL temporalmente. Al pulsar Guardar se sube al repo y se reemplaza por la ruta */
+    lbProduct.img = dataUrl;
     markUnsaved();
     renderMain();
     renderLightboxImage();
-    setStatus("Imagen lista · recuerda Guardar", "warn");
+    setStatus("Imagen lista · pulsa Guardar para subir a GitHub", "warn");
   }catch(err){
     console.error(err);
     setStatus("Error al procesar la imagen", "err");
   }
 };
+
 lbRemove.onclick = () => {
   if(!lbBrand || !lbProduct) return;
-  const key = lbBrand.id + "::" + lbProduct.id;
-  delete imageOverrides[key];
+  lbProduct.img = "";
   markUnsaved();
   renderMain();
   renderLightboxImage();
@@ -1572,15 +1536,12 @@ document.getElementById("brandSave").onclick = () => {
 };
 
 document.getElementById("btnAddBrand").onclick = () => openBrandModal(null);
-document.getElementById("heroEdit").onclick = () => {
-  if(currentBrandId) openBrandModal(currentBrandId);
-};
+document.getElementById("heroEdit").onclick = () => { if(currentBrandId) openBrandModal(currentBrandId); };
 
 function deleteBrand(brandId){
   const b = catalog.find(x => x.id === brandId);
   if(!b) return;
   if(!confirm('¿Eliminar la marca "' + b.brand + '" y sus ' + b.products.length + ' productos?')) return;
-  Object.keys(imageOverrides).forEach(k => { if(k.startsWith(brandId + "::")) delete imageOverrides[k]; });
   catalog = catalog.filter(x => x.id !== brandId);
   if(currentBrandId === brandId) currentBrandId = catalog[0] ? catalog[0].id : null;
   markUnsaved();
@@ -1611,7 +1572,7 @@ function openProductModal(brandId, productId){
     prodNameIn.value = p.name;
     prodTypeIn.value = p.type;
     prodVolumeIn.value = p.volume;
-    prodDetailIn.value = p.detail;
+    prodDetailIn.value = p.detail || "";
   } else {
     productModalTitle.textContent = "Nuevo producto";
     prodNameIn.value = "";
@@ -1647,7 +1608,7 @@ document.getElementById("prodSave").onclick = () => {
     const p = b.products.find(x => x.id === editingProductId);
     p.name = name; p.type = type; p.volume = volume; p.detail = detail;
   } else {
-    b.products.push({ id: nextId("p"), name, type, volume, detail });
+    b.products.push({ id: nextId("p"), name, type, volume, detail, img: "" });
   }
   markUnsaved();
   renderMain();
@@ -1665,49 +1626,159 @@ function deleteProduct(brandId, productId){
   const p = b.products.find(x => x.id === productId);
   if(!p) return;
   if(!confirm('¿Eliminar "' + p.name + ' ' + p.volume + '"?')) return;
-  delete imageOverrides[brandId + "::" + productId];
   b.products = b.products.filter(x => x.id !== productId);
   markUnsaved();
   renderMain();
 }
 
 /* =========================================================
-   BOTONES GUARDAR / RESTAURAR
+   CONFIGURACIÓN (TOKEN)
    ========================================================= */
-document.getElementById("btnSave").onclick = async (e) => {
-  const btn = e.currentTarget;
-  btn.disabled = true;
-  try {
-    await saveToStorage();
-  } finally {
-    btn.disabled = false;
+const settingsModal = document.getElementById("settingsModal");
+const cfgRepo = document.getElementById("cfgRepo");
+const cfgToken = document.getElementById("cfgToken");
+const cfgTokenStatus = document.getElementById("cfgTokenStatus");
+
+function refreshTokenStatus(){
+  const t = getToken();
+  if(t){
+    cfgTokenStatus.textContent = "✅ Token configurado (" + t.substring(0,12) + "...)";
+    cfgTokenStatus.style.color = "#9bffcb";
+  } else {
+    cfgTokenStatus.textContent = "⚠️ No hay token configurado. No podrás guardar en GitHub.";
+    cfgTokenStatus.style.color = "#ffd68a";
   }
+}
+
+function openSettings(){
+  cfgRepo.value = GH_CONFIG.owner + "/" + GH_CONFIG.repo;
+  cfgToken.value = "";
+  refreshTokenStatus();
+  settingsModal.classList.add("open");
+  document.body.style.overflow = "hidden";
+  setTimeout(() => cfgToken.focus(), 100);
+}
+function closeSettings(){
+  settingsModal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("btnSettings").onclick = openSettings;
+document.getElementById("settingsClose").onclick = closeSettings;
+settingsModal.addEventListener("click", (e) => { if(e.target === settingsModal) closeSettings(); });
+
+document.getElementById("cfgSave").onclick = () => {
+  const t = cfgToken.value.trim();
+  if(!t){ alert("Pega el token"); return; }
+  if(!t.startsWith("github_pat_") && !t.startsWith("ghp_")){
+    if(!confirm("El token no empieza con 'github_pat_' ni 'ghp_'. ¿Guardarlo igual?")) return;
+  }
+  setToken(t);
+  refreshTokenStatus();
+  setStatus("Token guardado ✓", "success");
+  setTimeout(closeSettings, 600);
 };
 
-document.getElementById("btnRestore").onclick = async (e) => {
-  const btn = e.currentTarget;
-  if(!localStorage.getItem(STORAGE_KEY)){
-    setStatus("No hay respaldo previo", "warn");
+document.getElementById("cfgClear").onclick = () => {
+  if(!confirm("¿Borrar el token guardado en este navegador?")) return;
+  setToken("");
+  refreshTokenStatus();
+  setStatus("Token borrado", "warn");
+};
+
+/* =========================================================
+   GUARDAR / RECARGAR
+   ========================================================= */
+async function saveAll(){
+  const token = getToken();
+  if(!token){
+    setStatus("Falta configurar el token de GitHub", "err");
+    openSettings();
     return;
   }
-  if(unsavedChanges && !confirm("Hay cambios sin guardar. ¿Restaurar el último guardado?")) return;
+
+  const btn = document.getElementById("btnSave");
   btn.disabled = true;
-  try {
-    catalog = [];
-    imageOverrides = {};
-    brandSortMode = "default";
-    productSortMode = "default";
-    brandSortEl.value = "default";
-    productSortEl.value = "default";
-    if(await loadFromStorage()){
+
+  try{
+    /* 1) Subir imágenes nuevas (data URLs) al repo */
+    let uploadedCount = 0;
+    for(const b of catalog){
+      for(const p of b.products){
+        if(p.img && p.img.startsWith("data:image/")){
+          const isPng = p.img.startsWith("data:image/png");
+          const ext = isPng ? "png" : "jpg";
+          const filename = p.id + "." + ext;
+          const path = GH_CONFIG.imgBase + filename;
+          setStatus("Subiendo imagen " + (uploadedCount+1) + "...", "warn");
+          await ghUploadFile(path, p.img, "Subir imagen " + filename);
+          /* Reemplazar por la ruta del repo */
+          p.img = path;
+          uploadedCount++;
+        }
+      }
+    }
+
+    /* 2) Guardar catalogo.json */
+    setStatus("Guardando catálogo...", "warn");
+    await ghWriteJson({
+      catalog, brandSortMode, productSortMode,
+      updatedAt: new Date().toISOString(),
+      version: 1
+    }, "Actualizar catálogo");
+
+    /* 3) Guardar cache local también */
+    saveLocalCache();
+    unsavedChanges = false;
+    renderMain();
+    setStatus("Guardado ✓ (" + catalog.length + " marcas · " + uploadedCount + " img subidas)", "success");
+  }catch(err){
+    console.error(err);
+    setStatus("Error: " + (err.message || err), "err");
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+async function loadAll(){
+  setStatus("Cargando desde GitHub...", "warn");
+  try{
+    const data = await ghReadJson();
+    if(data && Array.isArray(data.catalog) && data.catalog.length > 0){
+      catalog = data.catalog;
+      brandSortMode = data.brandSortMode || "default";
+      productSortMode = data.productSortMode || "default";
       currentBrandId = catalog[0] ? catalog[0].id : null;
+      const p = catalog.reduce((s,x) => s + x.products.length, 0);
+      setStatus("Cargado ✓ (" + catalog.length + " marcas · " + p + " productos)", "success");
+      return true;
+    }
+    setStatus("No existe catalogo.json en el repo todavía", "warn");
+    return false;
+  }catch(err){
+    console.error(err);
+    setStatus("Error al cargar: " + (err.message || err), "err");
+    return false;
+  }
+}
+
+document.getElementById("btnSave").onclick = saveAll;
+
+document.getElementById("btnRestore").onclick = async () => {
+  if(unsavedChanges && !confirm("Hay cambios sin guardar. ¿Descartarlos y recargar desde GitHub?")) return;
+  const btn = document.getElementById("btnRestore");
+  btn.disabled = true;
+  try{
+    const ok = await loadAll();
+    if(ok){
       brandSortEl.value = brandSortMode;
       productSortEl.value = productSortMode;
       renderSidebar(searchEl.value);
       renderMain();
-      closeLightbox();
+      saveLocalCache();
+      unsavedChanges = false;
     }
-  } finally {
+  }finally{
     btn.disabled = false;
   }
 };
@@ -1720,7 +1791,6 @@ brandSortEl.addEventListener("change", (e) => {
   renderSidebar(searchEl.value);
   markUnsaved();
 });
-
 productSortEl.addEventListener("change", (e) => {
   productSortMode = e.target.value;
   renderMain();
@@ -1738,20 +1808,34 @@ document.addEventListener("keydown", (e) => {
   if(lightbox.classList.contains("open")) closeLightbox();
   else if(brandModal.classList.contains("open")) closeBrandModal();
   else if(productModal.classList.contains("open")) closeProductModal();
+  else if(settingsModal.classList.contains("open")) closeSettings();
 });
 
 /* =========================================================
-   INICIALIZACIÓN (async para cargar IndexedDB)
+   INICIALIZACIÓN
    ========================================================= */
 (async function init(){
+  /* 1) Construir catálogo base con IDs */
   buildInitialCatalog();
   currentBrandId = catalog[0].id;
 
-  const loaded = await loadFromStorage();
-  if(loaded){
-    currentBrandId = catalog[0] ? catalog[0].id : null;
-  } else {
-    setStatus("Listo · sin guardar", null);
+  /* 2) Intentar cargar desde GitHub */
+  const loadedFromGh = await loadAll();
+
+  /* 3) Si no hay JSON en GitHub, usar cache local o el catálogo inicial */
+  if(!loadedFromGh){
+    const cache = loadLocalCache();
+    if(cache && cache.catalog && cache.catalog.length > 0){
+      catalog = cache.catalog;
+      brandSortMode = cache.brandSortMode || "default";
+      productSortMode = cache.productSortMode || "default";
+      currentBrandId = catalog[0] ? catalog[0].id : null;
+      setStatus("Cargado desde caché local · pulsa Guardar para subir a GitHub", "warn");
+    } else {
+      setStatus("Catálogo inicial · pulsa Guardar para crear catalogo.json en GitHub", "warn");
+      /* Marcar como cambio pendiente para que el usuario sepa que debe guardar */
+      unsavedChanges = true;
+    }
   }
 
   brandSortEl.value = brandSortMode;
@@ -1759,6 +1843,13 @@ document.addEventListener("keydown", (e) => {
 
   renderSidebar();
   renderMain();
+
+  /* 4) Avisar si falta el token */
+  if(!getToken()){
+    setTimeout(() => {
+      setStatus("Configura tu token de GitHub en ⚙️ Config", "warn");
+    }, 800);
+  }
 })();
 </script>
 </body>
